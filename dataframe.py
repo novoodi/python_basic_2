@@ -6,14 +6,13 @@ import seaborn as sns
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("gapminder.tsv", sep="\t") 
-    # 데이터 프레임으로 반환(표로 반환한다는 뜻)구분자를 이용해서 데이터 저장
+    df = pd.read_csv("gapminder.tsv", sep="\t") # 데이터프레임으로 반환
     return df
 
 def plot_matplotlib():
-    st.title("**Bar Plot** with Seaborn") # title 사용해서 크게 표시
-    df = load_data() # 테이터 불러오기 테이터 프레임으로 구보 변환
-    fig, ax = plt.subplots() # 시각화 하는 것 fig ->그림 ax ->도화지
+    st.ti("**Bar Plot** with Seaborn")
+    df = load_data() # 데이터 불러오기->데이터프레임 구조 변환
+    fig, ax = plt.subplots() # 시각화
     
     # Using Seaborn's barplot function
     sns.barplot(x=df['year'], y=df['lifeExp'], data=df, ax=ax)
@@ -21,12 +20,12 @@ def plot_matplotlib():
     # Labeling axes and title
     ax.set_xlabel("year")
     ax.set_ylabel("lifeExp")
-    ax.set_title("yer vs lifeExp")
+    ax.set_title("Year vs. lifeExp")
         
-    st.pyplot(fig) #웹상에 즉 streamlit에 그리는 것을 의미함
+    st.pyplot(fig) # streamlit에 그리기
 
 def main():
-    st.title("Data Display st.dataframe()") #웹페이지 타이틀
+    st.title("Data Display st.dataframe()")
     st.checkbox("Use container width", value=False, key = 'use_container_width')
     
     df = load_data()
